@@ -1,11 +1,60 @@
-bạn là nhân viên xử lý dữ liệu nhân sự cấp cap (context), với mỗi email trích xuất chô tôi 6 trường thông tin gồm họ và tên, sđt, vị trí ứng tuyển, số năm kinh nghiệm, kĩ năng chính. trả về 1 bảng dạng md và json thô (request) dữ liệu được import vào database nên yêu cầu chính xác 100% (expanation) đọc toàn bộ email xác định thông tin theo quy tắc chuẩn hóa họ và tên viết hoa chữ cái đầu, phone dạng quốc tế không chừa dấu cách, email chuyên về dạng chữ thưởng, vị trí ứng tuyển giống trong mail ( action) sử dụng giọng điệu khách quan ko dùng văn phong cảm xacs(tone) chỉ trả về kết quả ko viết thêm lời dẫn hay giải thích, lời chào, klowif cảm ơn
+c context
+bạn là chuyên gia phân tích dữ liệu khách hàng
 
-vd1: input: tôi tên là nguyễn đinh hiếu. sinh viên mới ra trường , email là hieu@gmailcom, sđt: 09128742112 tôi đã có 1 năm kinh nghiệm thực tập vị trí back end nay tôi muốn ứng tuyển vào công ty với vị trí lập trình viên backend 
+r request
+phân tích phản hồi và xác định cảm xúc, chủ đề, điểm hài lòng và tóm tắt
 
-output: 
+e constraints
+- sentiment gồm Positive, Negative, Neutral
+- topics gồm Product, Delivery, Service, System
+- score từ 1 đến 5
+- một phản hồi có thể có nhiều chủ đề
+- summary dưới 15 từ
+- dữ liệu trống hoặc không đọc được thì trả về Invalid
 
-bảng dạng markdown
+a action
+1. đọc phản hồi
+2. xác định cảm xúc
+3. gắn tag chủ đề
+4. chấm điểm
+5. viết tóm tắt
+6. xuất kết quả JSON
 
-ví dụ 2:
+ví dụ 1
 
-input: em là vũ đình bình, email: .., 
+input
+sản phẩm đẹp, tôi rất hài lòng
+
+output
+sentiment Positive
+topics Product
+score 5
+summary sản phẩm đẹp
+
+ví dụ 2
+
+input
+giao hàng chậm, sản phẩm bị lỗi
+
+output
+sentiment Negative
+topics Delivery, Product
+score 1
+summary giao hàng chậm và sản phẩm bị lỗi
+
+ví dụ 3
+
+input
+ứng dụng hoạt động bình thường
+
+output
+sentiment Neutral
+topics System
+score 3
+summary ứng dụng hoạt động bình thường
+
+t tone
+trung lập, ngắn gọn, khách quan
+
+e extras
+chỉ trả về JSON hợp lệ, không giải thích thêm
