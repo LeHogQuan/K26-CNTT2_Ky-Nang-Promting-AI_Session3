@@ -4,7 +4,7 @@ bạn là chuyên gia phân tích dữ liệu khách hàng
 r request
 phân tích phản hồi và xác định cảm xúc, chủ đề, điểm hài lòng và tóm tắt
 
-e constraints
+e explanation
 - sentiment gồm Positive, Negative, Neutral
 - topics gồm Product, Delivery, Service, System
 - score từ 1 đến 5
